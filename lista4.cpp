@@ -27,6 +27,7 @@ void peneira(int *vet, int raiz, int fundo);
 void populaVetor(int vetor[], int tamanho);
 void pause(float delay1);
 void tarefas();
+void heap(Task *tarefa, int n);
 
 int main()
 {
@@ -469,7 +470,8 @@ void tarefas()
         printf("Prioridade (1 - 5): ");
         scanf("%d", &tarefa[i].prioridade);
     }
-    heapsort(tarefa, 5);
+    heap(tarefa, 5);
+
     system("clear");
 
     for (int i = 0; i < 5; i++)
@@ -482,52 +484,30 @@ void tarefas()
 
 void heapsort2(Task *tarefa, int n)
 {
-    int i, tmp;
-
-    for (i = (n / 2); i >= 0; i--)
+    int i, j;
+    Task aux;
+    for (i = 0; i < n; i++)
     {
-        peneira(vet, i, n - 1);
-    }
-
-    for (i = n - 1; i >= 1; i--)
-    {
-        tmp = vet[0];
-        vet[0] = vet[i];
-        vet[i] = tmp;
-        peneira(vet, 0, i - 1);
+        aux = tarefa[i];
+        for (j = i; (j > 0) && (aux.prioridade < tarefa[j - 1].prioridade); j--)
+        {
+            tarefa[j] = tarefa[j - 1];
+        }
+        tarefa[j] = aux;
     }
 }
 
-void peneira(int *vet, int raiz, int fundo)
+void heap(Task *tarefa, int n)
 {
-    int pronto, filhoMax, tmp;
-
-    pronto = 0;
-    while ((raiz * 2 <= fundo) && (!pronto))
+    int i, j;
+    Task aux;
+    for (i = 0; i < n; i++)
     {
-        if (raiz * 2 == fundo)
+        aux = tarefa[i];
+        for (j = i; (j > 0) && (aux.prioridade < tarefa[j - 1].prioridade); j--)
         {
-            filhoMax = raiz * 2;
+            tarefa[j] = tarefa[j - 1];
         }
-        else if (vet[raiz * 2] > vet[raiz * 2 + 1])
-        {
-            filhoMax = raiz * 2;
-        }
-        else
-        {
-            filhoMax = raiz * 2 + 1;
-        }
-
-        if (vet[raiz] < vet[filhoMax])
-        {
-            tmp = vet[raiz];
-            vet[raiz] = vet[filhoMax];
-            vet[filhoMax] = tmp;
-            raiz = filhoMax;
-        }
-        else
-        {
-            pronto = 1;
-        }
+        tarefa[j] = aux;
     }
 }
