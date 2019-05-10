@@ -1,13 +1,18 @@
 #include <bits/stdc++.h>
+#include <time.h>
 #include <iostream>
+#define DEZ 10000
+#define CEM 100000
+#define UM 1000000
 
 using namespace std;
 
 void menuPrincipal();
 void menuOrdenacao();
-void tempoDez();
-void tempoCem();
-void tempoUm();
+void tempo(int vetor[], int tamanho);
+void heapsort(int *vet, int n);
+void peneira(int *vet, int raiz, int fundo);
+void populaVetor(int vetor[], int tamanho);
 
 int main()
 {
@@ -62,6 +67,13 @@ void menuPrincipal()
 void menuOrdenacao()
 {
     int opcao;
+    int vetorDez[DEZ],
+        vetorCem[CEM],
+        vetorUm[UM];
+
+    populaVetor(vetorDez, DEZ);
+    populaVetor(vetorCem, CEM);
+    populaVetor(vetorUm, UM);
 
     do
     {
@@ -78,15 +90,15 @@ void menuOrdenacao()
         {
         case 1:
             system("clear");
-            tempoDez();
+            tempo(vetorDez, DEZ);
             break;
         case 2:
             system("clear");
-            tempoCem();
+            tempo(vetorCem, CEM);
             break;
         case 3:
             system("clear");
-            tempoUm();
+            tempo(vetorUm, UM);
             break;
         case 0:
             system("clear");
@@ -99,14 +111,79 @@ void menuOrdenacao()
     } while (opcao);
 }
 
-void tempoDez()
+void tempo(int vetor[], int tamanho)
 {
+    clock_t inicio, fim;
+    double tempo;
+
+    inicio = clock();
+    heapsort(vetor, tamanho);
+    fim = clock();
+
+    tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+    cout << "Tempo: " << tempo << "ns" << endl;
 }
 
-void tempoCem()
+void peneira(int *vet, int raiz, int fundo);
+
+void heapsort(int *vet, int n)
 {
+    int i, tmp;
+
+    for (i = (n / 2); i >= 0; i--)
+    {
+        peneira(vet, i, n - 1);
+    }
+
+    for (i = n - 1; i >= 1; i--)
+    {
+        tmp = vet[0];
+        vet[0] = vet[i];
+        vet[i] = tmp;
+        peneira(vet, 0, i - 1);
+    }
 }
 
-void tempoUm()
+void peneira(int *vet, int raiz, int fundo)
 {
+    int pronto, filhoMax, tmp;
+
+    pronto = 0;
+    while ((raiz * 2 <= fundo) && (!pronto))
+    {
+        if (raiz * 2 == fundo)
+        {
+            filhoMax = raiz * 2;
+        }
+        else if (vet[raiz * 2] > vet[raiz * 2 + 1])
+        {
+            filhoMax = raiz * 2;
+        }
+        else
+        {
+            filhoMax = raiz * 2 + 1;
+        }
+
+        if (vet[raiz] < vet[filhoMax])
+        {
+            tmp = vet[raiz];
+            vet[raiz] = vet[filhoMax];
+            vet[filhoMax] = tmp;
+            raiz = filhoMax;
+        }
+        else
+        {
+            pronto = 1;
+        }
+    }
+}
+
+void populaVetor(int vetor[], int tamanho)
+{
+    srand((unsigned)time(NULL));
+    for (int i = 0; i < tamanho; i++)
+    {
+        vetor[i] = rand() % tamanho;
+    }
 }
