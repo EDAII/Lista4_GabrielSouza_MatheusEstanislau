@@ -10,6 +10,14 @@
 
 using namespace std;
 
+typedef struct
+{
+    int prioridade;
+    char nome[30];
+} Task;
+
+Task tarefa[5];
+
 void menuPrincipal();
 void menuOrdenacao();
 void tutorialHeapSort();
@@ -17,7 +25,8 @@ void tempo(int vetor[], int tamanho);
 void heapsort(int *vet, int n);
 void peneira(int *vet, int raiz, int fundo);
 void populaVetor(int vetor[], int tamanho);
-void pause (float delay1);
+void pause(float delay1);
+void tarefas();
 
 int main()
 {
@@ -26,8 +35,6 @@ int main()
 
     return 0;
 }
-
-
 
 void menuPrincipal()
 {
@@ -57,7 +64,7 @@ void menuPrincipal()
             break;
         case 3:
             system("clear");
-            //Tarefas
+            tarefas();
             break;
         case 0:
             system("clear");
@@ -76,25 +83,25 @@ void tutorialHeapSort()
     char lixo;
     system("clear");
     printf("O algoritmo heapsort é um algoritmo de ordenação\n");
-    printf(" O heapsort utiliza o heap que é uma estrutura de dados, para ordenar os elementos à medida que os insere na estrutura.\n"); 
-	printf("Assim, ao final das inserções, os elementos podem ser sucessivamente removidos da raiz da heap, na ordem desejada.\n");
-	printf("lembrando sempre de manter a propriedade de max-heap.\n");      
+    printf(" O heapsort utiliza o heap que é uma estrutura de dados, para ordenar os elementos à medida que os insere na estrutura.\n");
+    printf("Assim, ao final das inserções, os elementos podem ser sucessivamente removidos da raiz da heap, na ordem desejada.\n");
+    printf("lembrando sempre de manter a propriedade de max-heap.\n");
     pause(15);
     system("clear");
 
-    printf("o heap pode ser considerado como uma árvore que possui caracteristicas especiais ou como um vetor.\n"); 
-    printf("Para ordenar o vetor de forma decrescente, deve ser construída um Heap mínimo, em que o menor número fica na raiz.\n"); 
+    printf("o heap pode ser considerado como uma árvore que possui caracteristicas especiais ou como um vetor.\n");
+    printf("Para ordenar o vetor de forma decrescente, deve ser construída um Heap mínimo, em que o menor número fica na raiz.\n");
     printf("Para obter uma ordenação crescente, deve ser construído um Heap máximo em que o maior número fica na raiz).\n");
-    printf("O heapsort não é um algoritmo de ordenação estável\n"); 
-    printf("Porém, é possível adaptar a estrutura a ser ordenada de forma a tornar a ordenação 	estável.\n"); 
-    printf("Cada elemento da estrutura adaptada deve ficar no formato de um par elemento original, índice original.\n"); 
-    printf("Assim, caso dois elementos sejam iguais, o desempate ocorrerá pelo índice na estrutura original.\n");      
+    printf("O heapsort não é um algoritmo de ordenação estável\n");
+    printf("Porém, é possível adaptar a estrutura a ser ordenada de forma a tornar a ordenação 	estável.\n");
+    printf("Cada elemento da estrutura adaptada deve ficar no formato de um par elemento original, índice original.\n");
+    printf("Assim, caso dois elementos sejam iguais, o desempate ocorrerá pelo índice na estrutura original.\n");
     pause(20);
     system("clear");
 
     printf("Imagine um vetor de 10 elementos: Vetor{6,5,3,1,8,7,2,4}\n");
-    printf("Agora iremos realizar a construção do Heap máximo\n.");        
-    printf("O algoritmo irá percorrer todo o vetor e irá colocar os maiores numeros em cima.\nAcompanhe o exemplo:\n");       
+    printf("Agora iremos realizar a construção do Heap máximo\n.");
+    printf("O algoritmo irá percorrer todo o vetor e irá colocar os maiores numeros em cima.\nAcompanhe o exemplo:\n");
     pause(10);
     system("clear");
     printf("{6,5 ,3 ,1 ,8 ,7 ,2 ,4}\n");
@@ -312,7 +319,6 @@ void tutorialHeapSort()
     pause(5);
 }
 
-
 void menuOrdenacao()
 {
     int opcao;
@@ -374,8 +380,6 @@ void tempo(int vetor[], int tamanho)
     cout << "Tempo: " << tempo << "ns" << endl;
 }
 
-void peneira(int *vet, int raiz, int fundo);
-
 void heapsort(int *vet, int n)
 {
     int i, tmp;
@@ -434,5 +438,96 @@ void populaVetor(int vetor[], int tamanho)
     for (int i = 0; i < tamanho; i++)
     {
         vetor[i] = rand() % tamanho;
+    }
+}
+
+void pause(float delay1)
+{
+
+    if (delay1 < 0.001)
+        return; // pode ser ajustado e/ou evita-se valores negativos.
+
+    float inst1 = 0, inst2 = 0;
+
+    inst1 = (float)clock() / (float)CLOCKS_PER_SEC;
+
+    while (inst2 - inst1 < delay1)
+    {
+        inst2 = (float)clock() / (float)CLOCKS_PER_SEC;
+    }
+
+    return;
+}
+
+void tarefas()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        printf("Tarefa: ");
+        setbuf(stdin, NULL);
+        fgets(tarefa[i].nome, 30, stdin);
+        printf("Prioridade (1 - 5): ");
+        scanf("%d", &tarefa[i].prioridade);
+    }
+    heapsort(tarefa, 5);
+    system("clear");
+
+    for (int i = 0; i < 5; i++)
+    {
+        printf("Tarefa: ");
+        cout << (tarefa[i].nome);
+        printf("Prioridade: %d\n\n", tarefa[i].prioridade);
+    }
+}
+
+void heapsort2(Task *tarefa, int n)
+{
+    int i, tmp;
+
+    for (i = (n / 2); i >= 0; i--)
+    {
+        peneira(vet, i, n - 1);
+    }
+
+    for (i = n - 1; i >= 1; i--)
+    {
+        tmp = vet[0];
+        vet[0] = vet[i];
+        vet[i] = tmp;
+        peneira(vet, 0, i - 1);
+    }
+}
+
+void peneira(int *vet, int raiz, int fundo)
+{
+    int pronto, filhoMax, tmp;
+
+    pronto = 0;
+    while ((raiz * 2 <= fundo) && (!pronto))
+    {
+        if (raiz * 2 == fundo)
+        {
+            filhoMax = raiz * 2;
+        }
+        else if (vet[raiz * 2] > vet[raiz * 2 + 1])
+        {
+            filhoMax = raiz * 2;
+        }
+        else
+        {
+            filhoMax = raiz * 2 + 1;
+        }
+
+        if (vet[raiz] < vet[filhoMax])
+        {
+            tmp = vet[raiz];
+            vet[raiz] = vet[filhoMax];
+            vet[filhoMax] = tmp;
+            raiz = filhoMax;
+        }
+        else
+        {
+            pronto = 1;
+        }
     }
 }
