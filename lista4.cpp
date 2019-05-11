@@ -10,14 +10,6 @@
 
 using namespace std;
 
-typedef struct
-{
-    int prioridade;
-    char nome[30];
-} Task;
-
-Task tarefa[5];
-
 void menuPrincipal();
 void menuOrdenacao();
 void tutorialHeapSort();
@@ -25,9 +17,6 @@ void tempo(int vetor[], int tamanho);
 void heapsort(int *vet, int n);
 void peneira(int *vet, int raiz, int fundo);
 void populaVetor(int vetor[], int tamanho);
-void pause(float delay1);
-void tarefas();
-void heap(Task *tarefa, int n);
 
 int main()
 {
@@ -36,6 +25,8 @@ int main()
 
     return 0;
 }
+
+
 
 void menuPrincipal()
 {
@@ -65,7 +56,7 @@ void menuPrincipal()
             break;
         case 3:
             system("clear");
-            tarefas();
+            //Tarefas
             break;
         case 0:
             system("clear");
@@ -84,45 +75,80 @@ void tutorialHeapSort()
     char lixo;
     system("clear");
     printf("O algoritmo heapsort é um algoritmo de ordenação\n");
-    printf(" O heapsort utiliza o heap que é uma estrutura de dados, para ordenar os elementos à medida que os insere na estrutura.\n");
-    printf("Assim, ao final das inserções, os elementos podem ser sucessivamente removidos da raiz da heap, na ordem desejada.\n");
-    printf("lembrando sempre de manter a propriedade de max-heap.\n");
-    pause(15);
+    printf(" O heapsort utiliza o heap que é uma estrutura de dados, para ordenar os elementos à medida que os insere na estrutura.\n"); 
+	printf("Assim, ao final das inserções, os elementos podem ser sucessivamente removidos da raiz da heap, na ordem desejada.\n");
+	printf("lembrando sempre de manter a propriedade de max-heap.\n");      
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
 
     printf("o heap pode ser considerado como uma árvore que possui caracteristicas especiais ou como um vetor.\n");
-    printf("Para ordenar o vetor de forma decrescente, deve ser construída um Heap mínimo, em que o menor número fica na raiz.\n");
-    printf("Para obter uma ordenação crescente, deve ser construído um Heap máximo em que o maior número fica na raiz).\n");
-    printf("O heapsort não é um algoritmo de ordenação estável\n");
-    printf("Porém, é possível adaptar a estrutura a ser ordenada de forma a tornar a ordenação 	estável.\n");
-    printf("Cada elemento da estrutura adaptada deve ficar no formato de um par elemento original, índice original.\n");
-    printf("Assim, caso dois elementos sejam iguais, o desempate ocorrerá pelo índice na estrutura original.\n");
-    pause(20);
+
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
 
-    printf("Imagine um vetor de 10 elementos: Vetor{6,5,3,1,8,7,2,4}\n");
-    printf("Agora iremos realizar a construção do Heap máximo\n.");
-    printf("O algoritmo irá percorrer todo o vetor e irá colocar os maiores numeros em cima.\nAcompanhe o exemplo:\n");
-    pause(10);
+    printf("Para ordenar o vetor de forma decrescente, deve ser construída um Heap mínimo, em que o menor número fica na raiz.\n"); 
+    printf("Para obter uma ordenação crescente, deve ser construído um Heap máximo em que o maior número fica na raiz).\n");
+
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
+    printf("O heapsort não é um algoritmo de ordenação estável\n"); 
+    printf("Porém, é possível adaptar a estrutura a ser ordenada de forma a tornar a ordenação 	estável.\n"); 
+    printf("Cada elemento da estrutura adaptada deve ficar no formato de um par elemento original, índice original.\n"); 
+    printf("Assim, caso dois elementos sejam iguais, o desempate ocorrerá pelo índice na estrutura original.\n");      
+
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
+    printf("Imagine um vetor de 8 elementos: Vetor{6,5,3,1,8,7,2,4}\n");
+    printf("Agora iremos realizar a construção do Heap máximo.\n");        
+    printf("O algoritmo irá percorrer todo o vetor e irá colocar os maiores numeros em cima.\nAcompanhe o exemplo:\n");       
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+    
     printf("{6,5 ,3 ,1 ,8 ,7 ,2 ,4}\n");
-    pause(5);
     printf("Coloca-se o primeiro elemento do vetor no nó raiz.\n");
-    pause(5);
     printf("          6          \n");
     printf("\n");
-    pause(5);
+
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("{5 ,3 ,1 ,8 ,7 ,2 ,4}\n");
     printf("Coloca-se os elementos filhos 3 e 5.\n");
-    pause(5);
     printf("          6          \n");
     printf("         / \\          \n");
     printf("        5   3       \n");
-    pause(5);
+
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
+    
     printf("{1 ,8 ,7 ,2 ,4}\n");
     printf("\n");
     printf("Coloca-se os elementos filhos do elemento 5 que são 1 e 8.\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("           6          \n");
     printf("          / \\          \n");
     printf("        5     3       \n");
@@ -131,7 +157,12 @@ void tutorialHeapSort()
     printf("{7 ,2 ,4}\n");
     printf("Quando o elemento 8 é adicionado é feito uma comparação com seu pai, e como 8 > 5 é feita a troca.\n");
     printf("\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("           6          \n");
     printf("          / \\          \n");
     printf("        8     3       \n");
@@ -141,16 +172,31 @@ void tutorialHeapSort()
     printf("Para obedecer a regra do max heap sempre é feita a comparação para saber se o elemento pai sempre é maior que seus filhos.\n");
     printf("Como 8 é maior que o nó raiz, é feita a troca.\n");
     printf("\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("           8          \n");
     printf("          / \\          \n");
     printf("        6     3       \n");
     printf("       / \\           \n");
     printf("      1   5       \n");
     printf("{7 ,2 ,4}\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("Agora é colocado os elementos filhos do 3 que são 7 e 2.\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("            8          \n");
     printf("          /    \\          \n");
     printf("        6       3       \n");
@@ -159,14 +205,24 @@ void tutorialHeapSort()
     printf("{,4}\n");
     printf("\n");
     printf("Quando o elemento 7 é adicionado é feito uma comparação com seu pai, e como 7 > 3 é feita a troca.\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("            8          \n");
     printf("          /    \\          \n");
     printf("        6       7       \n");
     printf("       / \\     / \\       \n");
     printf("      1   5   3   2 \n");
     printf("{,4}\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("Agora é colocado o elemento filho do 1 que é o 4.\n");
     printf("            8          \n");
     printf("          /    \\          \n");
@@ -175,7 +231,12 @@ void tutorialHeapSort()
     printf("      1   5   3   2 \n");
     printf("     /       \n");
     printf("    4      \n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("Quando o elemento 4 é adicionado é feito uma comparação com seu pai, e como 4 > 1 é feita a troca.\n");
     printf("            8          \n");
     printf("          /    \\          \n");
@@ -184,10 +245,20 @@ void tutorialHeapSort()
     printf("      4   5   3   2 \n");
     printf("     /       \n");
     printf("    1      \n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("Com o Heap construÍdo temos o seguinte vetor: \n");
     printf("{8,6,7,4,5,3,2,1}\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("Para efetuar a ordenação devemos trocar sempre o nó raiz com o elemento do ultimo nó.\n");
     printf("Após a troca retiramos o maior elemento e colocamos no final do vetor.\n");
     printf("Nó raiz = 8, menor elemento do último nó = 1, então é feita a troca e a remoção\n");
@@ -198,7 +269,12 @@ void tutorialHeapSort()
     printf("      4   5   3   2 \n");
     printf("     /       \n");
     printf("    8      \n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("            7          \n");
     printf("          /    \\          \n");
     printf("        6       3       \n");
@@ -206,6 +282,12 @@ void tutorialHeapSort()
     printf("      4   5   1   2 \n");
     printf("{ , , , , , , ,8 }\n");
     printf("Lembrando sempre de garantir o Heap máximo.\n");
+
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     printf("Então teremos que trocar o nó raiz que é igual a 1 com o 7 e o 3 para grantir o Heap Máximo.\n");
     printf("E assim por diante.\n");
     printf("            7          \n");
@@ -213,103 +295,157 @@ void tutorialHeapSort()
     printf("        6       3       \n");
     printf("       / \\     / \\       \n");
     printf("      4   5   1   2 \n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
     system("clear");
     printf("            2          \n");
     printf("          /    \\          \n");
     printf("        6       3       \n");
     printf("       / \\     / \\       \n");
     printf("      4   5    1   7 \n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            6          \n");
     printf("          /    \\          \n");
     printf("        5        3       \n");
     printf("       / \\     /       \n");
     printf("      4   2   1  \n");
     printf("{ , , , , , ,7,8 }\n");
-    pause(5);
+    
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            1          \n");
     printf("          /    \\          \n");
     printf("        5        3       \n");
     printf("       / \\     /       \n");
     printf("      4   2   6  \n");
     printf("{ , , , , , ,7,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            5          \n");
     printf("          /    \\          \n");
     printf("        4        3       \n");
     printf("       / \\     /       \n");
     printf("      1   2     \n");
     printf("{ , , , , ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            2          \n");
     printf("          /    \\          \n");
     printf("        4        3       \n");
     printf("       / \\            \n");
     printf("      1   5     \n");
     printf("{ , , , , ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            4          \n");
     printf("          /    \\          \n");
     printf("        2        3       \n");
     printf("       /             \n");
     printf("      1        \n");
     printf("{ , , , ,5 ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            4          \n");
     printf("          /    \\          \n");
     printf("        2        3       \n");
     printf("       /            \n");
     printf("      1      \n");
     printf("{ , , , ,5 ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            1          \n");
     printf("          /   \\          \n");
     printf("        2       3       \n");
     printf("       /            \n");
     printf("      4      \n");
     printf("{ , , , ,5 ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            3          \n");
     printf("          /   \\          \n");
     printf("        2       1       \n");
     printf("       /           \n");
     printf("     4      \n");
     printf("{ , , , ,5 ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            3          \n");
     printf("          /    \\          \n");
     printf("        2        1       \n");
     printf("                   \n");
     printf("           \n");
     printf("{ , , ,4 ,5 ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            1          \n");
     printf("          /   \\           \n");
     printf("        2       3       \n");
     printf("                   \n");
     printf("            \n");
     printf("{ , , ,3 ,5 ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            2          \n");
     printf("          /              \n");
     printf("        1               \n");
     printf("                   \n");
     printf("            \n");
     printf("{ , , ,3 ,5 ,6 ,7 ,8 }\n");
-    pause(5);
+    
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
     system("clear");
+
     printf("            1          \n");
     printf("          /              \n");
     printf("        2               \n");
@@ -317,8 +453,14 @@ void tutorialHeapSort()
     printf("            \n");
     printf("{ 1 ,2 ,3 ,5 ,6 ,7 ,8 }\n");
     printf("Pronto ordenamos o vetor!!\n");
-    pause(5);
+
+    cout << "\nTecle ENTER para prosseguir";
+    setbuf(stdin, NULL);
+    scanf("%c", &lixo);
+    system("clear");
+
 }
+
 
 void menuOrdenacao()
 {
@@ -381,6 +523,8 @@ void tempo(int vetor[], int tamanho)
     cout << "Tempo: " << tempo << "ns" << endl;
 }
 
+void peneira(int *vet, int raiz, int fundo);
+
 void heapsort(int *vet, int n)
 {
     int i, tmp;
@@ -439,75 +583,5 @@ void populaVetor(int vetor[], int tamanho)
     for (int i = 0; i < tamanho; i++)
     {
         vetor[i] = rand() % tamanho;
-    }
-}
-
-void pause(float delay1)
-{
-
-    if (delay1 < 0.001)
-        return; // pode ser ajustado e/ou evita-se valores negativos.
-
-    float inst1 = 0, inst2 = 0;
-
-    inst1 = (float)clock() / (float)CLOCKS_PER_SEC;
-
-    while (inst2 - inst1 < delay1)
-    {
-        inst2 = (float)clock() / (float)CLOCKS_PER_SEC;
-    }
-
-    return;
-}
-
-void tarefas()
-{
-    for (int i = 0; i < 5; i++)
-    {
-        printf("Tarefa: ");
-        setbuf(stdin, NULL);
-        fgets(tarefa[i].nome, 30, stdin);
-        printf("Prioridade (1 - 5): ");
-        scanf("%d", &tarefa[i].prioridade);
-    }
-    heap(tarefa, 5);
-
-    system("clear");
-
-    for (int i = 0; i < 5; i++)
-    {
-        printf("Tarefa: ");
-        cout << (tarefa[i].nome);
-        printf("Prioridade: %d\n\n", tarefa[i].prioridade);
-    }
-}
-
-void heapsort2(Task *tarefa, int n)
-{
-    int i, j;
-    Task aux;
-    for (i = 0; i < n; i++)
-    {
-        aux = tarefa[i];
-        for (j = i; (j > 0) && (aux.prioridade < tarefa[j - 1].prioridade); j--)
-        {
-            tarefa[j] = tarefa[j - 1];
-        }
-        tarefa[j] = aux;
-    }
-}
-
-void heap(Task *tarefa, int n)
-{
-    int i, j;
-    Task aux;
-    for (i = 0; i < n; i++)
-    {
-        aux = tarefa[i];
-        for (j = i; (j > 0) && (aux.prioridade < tarefa[j - 1].prioridade); j--)
-        {
-            tarefa[j] = tarefa[j - 1];
-        }
-        tarefa[j] = aux;
     }
 }
